@@ -22,10 +22,10 @@ To create a development build:
 npm run build-dev
 ```
 
-## Running
+To start a dev serve:
 
 ```sh
-node dist/bundle.js
+npm run start:dev
 ```
 
 ## Testing
