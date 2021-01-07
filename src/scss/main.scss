@@ -1,5 +1,8 @@
-@import "custom";
+@import "./partials/navBar";
+@import "./partials/shop";
 
-h1 {
-  color: red;
+body {
+  width: 100vw;
+  height: 10vh;
+  font-size: 16px;
 }
