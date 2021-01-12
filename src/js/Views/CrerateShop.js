@@ -19,15 +19,18 @@ export default class CreateShop {
 
   static createDivTitle(name){
         const divTitle = document.createElement('div');
-        const title = this.createH2(name);
-        divTitle.appendChild(title);
+        divTitle.appendChild(this.createH2(name));
         return divTitle;
   }
 
   static createH2(name){
       const h2Title = document.createElement('h2');
       h2Title.innerText = name;
-      return h2Title;
+      const anchor = document.createElement('a');
+      anchor.setAttribute('href', 'shop.html');
+      anchor.setAttribute('id', name);
+      anchor.appendChild(h2Title);
+      return anchor;
   }
 
 }

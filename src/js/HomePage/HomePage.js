@@ -1,13 +1,14 @@
 import getShops from '../../../fixtures/shop';
-import CreateShop from '../templates/CrerateShop';
+import CreateShop from '../Views/CrerateShop';
 
-export default class Shop {
+export default class HomePage {
 
-    static async loadShops() {
+    static async displayShops() {
         const shops = await getShops();
         for (let i=0; i<shops.length; i++) {
                 document.getElementById('container')
                         .appendChild(this.createShop(shops[i]));
+                this.observer(shops[i].name);
         };
     };
 
@@ -17,5 +18,13 @@ export default class Shop {
 
     return CreateShop.createSection(divImage, divTitle);
     };
+
+    static observer(name) {
+        console.log(name);
+        const title = document.getElementById(name);
+        title.addEventListener('click', () => {
+            sessionStorage.setItem('page', name);
+        });
+    }
 }
 
