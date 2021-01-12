@@ -1,21 +1,39 @@
 const webpack = require('webpack');
 const path = require('path');
-const CopyPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const TerserPlugin = require("terser-webpack-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const config = {
-  entry: './src/js/index.js',
+  context: path.resolve(__dirname,'.'),
+  entry: './src/js/app.js',
   output: {
     path: path.resolve(__dirname, 'public'),
     filename: '[name].[contenthash].js'
   },
+  devtool: 'inline-source-map',
   module: {
     rules: [
       {
-        test: /\.css$/,
+        test: /\.(png|jpg|jpeg|gif|svg)$/,
         use: [
-          'style-loader',
+          {
+            loader: 'file-loader'
+          }
+        ]    
+      },
+      {
+        test: /\.css$/,
+        use: [{
+          loader: 'style-loader'
+        },{
+          loader: MiniCssExtractPlugin.loader,
+          options: 
+          {
+            publicPath: '/public/assets/css',
+          },
+        },
           'css-loader'
         ]
       },
@@ -56,19 +74,32 @@ const config = {
       port: 8081
   },
   plugins: [
-    new CopyPlugin({
-      patterns: [{ from: 'src', to: "public" }],
-    }),
+    new MiniCssExtractPlugin(),
     new HtmlWebpackPlugin({
-      title: "Ma Liste de Course",
+      title: "Ma Liste de Course - Index",
       template: "./src/index.html",
       minify: false,
       filename: 'index.html'
     }),
+    new HtmlWebpackPlugin({
+      title: "Ma Liste de Course - Shop",
+      template: "./src/js/ShopPage/shop.html",
+      minify: false,
+      filename: 'shop.html'
+    }),
+    new HtmlWebpackPlugin({
+      title: "Ma Liste de Course - Basket",
+      template: "./src/js/BasketPage/basket.html",
+      minify: false,
+      filename: 'basket.html'
+    }),
     new CleanWebpackPlugin()
   ],
   optimization: {
+    moduleIds: 'deterministic',
     runtimeChunk: 'single',
+    minimize: true,
+    minimizer: [new TerserPlugin()],
     splitChunks: {
       cacheGroups: {
         vendor: {

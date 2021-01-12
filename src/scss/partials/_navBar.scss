@@ -1,0 +1,19 @@
+$grey-light :  rgb(194, 189, 189);
+$gray-dark :   gray;
+
+
+.bg-grey-light {
+  background-color: $grey-light;
+}
+.bg-grey-dark {
+  background-color: $gray-dark;
+}
+
+#title {
+  font-size: 0.9rem;
+}
+
+#bucket {
+  font-size: 0.8rem;
+  margin-bottom: 0;
+}

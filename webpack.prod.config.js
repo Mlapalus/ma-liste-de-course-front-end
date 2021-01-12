@@ -15,6 +15,14 @@ const config = {
   module: {
     rules: [
       {
+        test: /\.(png|jpg|jpeg|gif|svg)$/,
+        use: [
+          {
+            loader: 'file-loader'
+          }
+        ]    
+      },
+      {
         test: /\.js$/,
         exclude: /(node_modules|bower_components)/,
         use: ['babel-loader']
