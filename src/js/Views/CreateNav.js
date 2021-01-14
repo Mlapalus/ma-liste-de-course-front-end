@@ -27,7 +27,6 @@ export default class CreateNav {
     const anchor = document.createElement('a');
     anchor.setAttribute("href", "basket.html");
     anchor.appendChild(bucket);
-    
     return anchor;
   }
 

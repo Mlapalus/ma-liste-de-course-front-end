@@ -12,7 +12,7 @@ export default class Navbar {
   static observer() {
       const bucket = document.getElementById('bucket');
       bucket.addEventListener('click', () => {
-            sessionStorage.setItem('page', 'bucket');
+        sessionStorage.setItem('page', 'bucket');
       });
 
       const title = document.getElementById('title');
