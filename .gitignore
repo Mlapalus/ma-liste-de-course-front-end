@@ -1,7 +1,6 @@
 .cache/
 coverage/
 dist/*
-public/*
 .vscode/
 !dist/index.html
 node_modules/
